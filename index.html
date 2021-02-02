@@ -109,6 +109,7 @@
         }
 
         initialise() {
+          this.chooseColor = this.chooseColor.bind(this);
           btnStart.classList.add("hide");
           this.level = 1;
           this.colors = {
@@ -127,6 +128,7 @@
 
         nextLevel() {
           this.illuminateSequence();
+          this.addEventClick();
         }
 
         transformNumToCol(num) {
@@ -157,6 +159,15 @@
         turnOffColor(color) {
           this.colors[color].classList.remove("light");
         }
+
+        addEventClick() {
+          this.colors.blue.addEventListener("click", this.chooseColor);
+          this.colors.orange.addEventListener("click", this.chooseColor);
+          this.colors.purple.addEventListener("click", this.chooseColor);
+          this.colors.green.addEventListener("click", this.chooseColor);
+        }
+
+        chooseColor(ev) {}
       }
 
       function startGame() {
