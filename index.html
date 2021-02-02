@@ -105,6 +105,7 @@
         constructor() {
           this.initialise();
           this.generateSequence();
+          this.nextLevel();
         }
 
         initialise() {
@@ -122,6 +123,39 @@
           this.sequence = new Array(10)
             .fill(0)
             .map((n) => Math.floor(Math.random() * 4));
+        }
+
+        nextLevel() {
+          this.illuminateSequence();
+        }
+
+        transformNumToCol(num) {
+          switch (num) {
+            case 0:
+              return "blue";
+            case 1:
+              return "purple";
+            case 2:
+              return "orange";
+            case 3:
+              return "green;";
+          }
+        }
+
+        illuminateSequence() {
+          for (var i = 0; i < this.level; i++) {
+            const color = this.transformNumToCol(this.sequence[i]);
+            setTimeout(() => this.illuminateColor(color), 1000 * i);
+          }
+        }
+
+        illuminateColor(color) {
+          this.colors[color].classList.add("light");
+          setTimeout(() => this.turnOffColor(color), 350);
+        }
+
+        turnOffColor(color) {
+          this.colors[color].classList.remove("light");
         }
       }
 
